@@ -1,0 +1,54 @@
+﻿@page "/upload"
+@using Application.Services.UIData;
+@using Client.Services.Uploader;
+@using Domain;
+@using Tewr.Blazor.FileReader
+@using System.IO;
+@inject IFileReaderService fileReaderService;
+@inject IUploaderService uploaderService
+@inject NavigationManager navManager;
+@inject IUIDataService uiDataService;
+
+<h2>Upload Data</h2>
+
+<div>
+
+    <p class="@(string.IsNullOrEmpty(errorMessage) ? "" : "d-none")">@errorMessage</p>
+
+    <h4>Drag and drop data here</h4>
+    <input type="file" @ref=inputTypeFileElement /><button @onclick=ReadFile>Read file</button>
+
+</div>
+
+@code
+{
+    private ElementReference inputTypeFileElement;
+    private List<FormSwimLength> swimLengthList = new();
+    private string errorMessage = string.Empty;
+
+    public async Task ReadFile()
+    {
+        foreach (var file in await fileReaderService.CreateReference(inputTypeFileElement).EnumerateFilesAsync())
+        {
+            using (MemoryStream memoryStream = await file.CreateMemoryStreamAsync())
+            {
+                var res = await uploaderService.GetSwimDataFromCSVAsync(memoryStream);
+                if (!res.IsSuccess) 
+                {
+                    errorMessage = res.ErrorMessage;
+                    return;
+                }
+
+                if (res.Data is null || res.Data.Count <= 0)
+                {
+                    errorMessage = "No records found";
+                    return;
+                }
+
+                uiDataService.SetSwimLengthsFromFormSwimData(res.Data);
+
+                navManager.NavigateTo("/dashboard");
+            }
+        }
+    }
+}
