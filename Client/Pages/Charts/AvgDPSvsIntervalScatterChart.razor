@@ -1,0 +1,32 @@
+﻿@page "/avgdpsvsintervalscatterchart"
+@using Application.Services.UIData;
+@using Application.DTOs;
+@using Syncfusion.Blazor.Charts
+@inject IUIDataService uiDataService;
+
+<div class="chart-container">
+    <SfChart Background="#3b3b3b" Title="Average DPS vs Interval Distance">
+        <ChartTitleStyle Color="white" Size="20px"/>
+        <ChartSubTitleStyle Color="white" Size="11px" TextOverflow="@(TextOverflow.Wrap)" />
+        <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Category" Title="Interval (m)" TitleStyle=@(new ChartAxisTitleStyle(){Color = "white"})>
+            <ChartAxisLabelStyle Color="white" />
+        </ChartPrimaryXAxis>
+
+        <ChartPrimaryYAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Double" Title="AvgDPS" Minimum="0.5" TitleStyle=@(new ChartAxisTitleStyle(){Color = "white"})>
+            <ChartAxisLabelStyle Color="white" />
+        </ChartPrimaryYAxis>
+        <ChartTooltipSettings Enable="true"></ChartTooltipSettings>
+        <ChartSeriesCollection>
+            <ChartSeries DataSource="@data" XName="Interval" YName="AvgDPS" Type="ChartSeriesType.Scatter" Fill="yellow">
+            </ChartSeries>
+        </ChartSeriesCollection>
+    </SfChart>
+</div>
+@code {
+    private List<AvgDPSvsIntervalDTO> data;
+
+    protected override void OnInitialized()
+    {
+        data = uiDataService.GetAvgDPSvsIntervalData();
+    }
+}

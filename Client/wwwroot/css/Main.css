@@ -1,0 +1,19 @@
+﻿html {
+  background-color: #3b3b3b;
+  color: #ddfa4d;
+  width: 100vw;
+  overflow-x: hidden; }
+
+body {
+  width: 90vw;
+  margin: 0px auto; }
+
+html * {
+  background-color: #3b3b3b;
+  color: #ddfa4d; }
+
+main {
+  padding-top: 50px; }
+  main h2 {
+    color: white;
+    text-align: center; }

@@ -50,8 +50,17 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="ChartJs.Blazor.Fork" Version="2.0.2" />
+      <None Remove="styles\Chart.scss" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="styles\Chart.scss" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BuildWebCompiler" Version="1.12.405" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+        <PackageReference Include="Syncfusion.Blazor.Charts" Version="20.4.0.50" />
         <PackageReference Include="Tewr.Blazor.FileReader" Version="3.3.1.21360" />
     </ItemGroup>
 

@@ -1,0 +1,33 @@
+﻿@page "/lengthtimeovertimechart"
+@using Application.Services.UIData;
+@using Application.DTOs;
+@using Syncfusion.Blazor.Charts;
+@inject IUIDataService uiDataService;
+
+
+<div class="chart-container">
+    <SfChart Background="#3b3b3b" Title="Length Time Over Time">
+        <ChartTitleStyle Color="white" Size="20px" />
+        <ChartSubTitleStyle Color="white" Size="11px" TextOverflow="@(TextOverflow.Wrap)" />
+        <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.DateTime" LabelIntersectAction="LabelIntersectAction.Rotate45" Title="Time" TitleStyle=@(new ChartAxisTitleStyle(){Color = "white"})>
+            <ChartAxisLabelStyle Color="white" />
+        </ChartPrimaryXAxis>
+        <ChartPrimaryYAxis ValueType="Syncfusion.Blazor.Charts.ValueType.Double" Title="Length Time (s)" Minimum="10" TitleStyle=@(new ChartAxisTitleStyle(){Color = "white"})>
+            <ChartAxisLabelStyle Color="white" />
+        </ChartPrimaryYAxis>
+        <ChartSeriesCollection>
+            <ChartSeries DataSource="@data" XName="Time" YName="LengthTime" Width="3" Type="ChartSeriesType.Line" Fill="yellow">
+            </ChartSeries>
+        </ChartSeriesCollection>
+    </SfChart>
+</div>
+
+
+@code {
+    private List<LengthTimeOverTimeDTO> data;
+
+    protected override void OnInitialized()
+    {
+        data = uiDataService.GetLengthTimeOverTimeData();
+    }
+}

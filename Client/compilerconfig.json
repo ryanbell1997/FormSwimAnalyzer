@@ -1,0 +1,14 @@
+﻿[
+  {
+    "outputFile": "wwwroot/css/Chart.css",
+    "inputFile": "styles/Chart.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Main.css",
+    "inputFile": "styles/Main.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Upload.css",
+    "inputFile": "styles/Upload.scss"
+  }
+]

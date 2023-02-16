@@ -28,7 +28,7 @@ namespace Client.Services.Uploader
                 {
                     swimLengthList = await csv.GetRecordsAsync<FormSwimLength>().ToListAsync();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     _logger.LogError($"Error occured while attempting to convert CSV to classes - {ex.Message} - STACK TRACE: {ex.StackTrace}");
                 }

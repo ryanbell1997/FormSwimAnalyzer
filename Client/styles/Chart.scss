@@ -1,0 +1,23 @@
+﻿.chart {
+    &-gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-gap: 5px;
+        height: 75vh;
+    }
+
+    &-container {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media only screen and (max-width: 550px){
+    .chart {
+        &-gallery {
+            grid-template-columns: 1fr;
+            grid-auto-rows: min-content;
+        }
+    }
+}
