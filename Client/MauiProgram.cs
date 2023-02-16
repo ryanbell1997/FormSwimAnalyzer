@@ -1,9 +1,7 @@
 ﻿using Application.Services.UIData;
 using Client.Services.Uploader;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Syncfusion.Blazor;
-using System.Reflection;
 using Tewr.Blazor.FileReader;
 
 namespace Client;
