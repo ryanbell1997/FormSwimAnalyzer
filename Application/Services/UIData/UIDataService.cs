@@ -27,7 +27,10 @@ namespace Application.Services.UIData
             => SwimLengthData.Where(length => length.Stroke == "REST")
                              .Select(length => new RestTimeOverTimeLineDTO() { Time = length.SwimTime, TotalRestTime = length.TotalRestSeconds })
                              .ToList();
-        
+
+        public void ClearData()
+            => SwimLengthData.Clear();
+
         public void SetSwimLengthsFromFormSwimData(List<FormSwimLength> formSwimLengthList)
         {
             SwimLengthData = formSwimLengthList.Select(length => new SwimLength(length)).ToList();

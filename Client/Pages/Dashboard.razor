@@ -1,8 +1,12 @@
 ﻿@page "/dashboard"
 @using Client.Pages.Charts
+@using Application.Services.UIData;
+@inject NavigationManager navManager;
+@inject IUIDataService uiDataService;
 
 <main>
     <h2>Swim Dashboard</h2>
+    <button @onclick="Restart">Restart</button>
     <div class="chart-gallery">
         <AvgDPSvsIntervalScatterChart />
         <LengthTimeOverTimeLineChart />
@@ -10,3 +14,11 @@
         <RestTimeOverTimeLineChart />
     </div>
 </main>
+
+@code {
+    public void Restart()
+    {
+        uiDataService.ClearData();
+        navManager.NavigateTo("/");
+    }
+}

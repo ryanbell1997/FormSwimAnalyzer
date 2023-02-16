@@ -11,5 +11,6 @@ namespace Application.Services.UIData
         List<LengthTimeOverTimeDTO> GetLengthTimeOverTimeData();
         List<AvgDPSvsIntervalDTO> GetAvgDPSvsIntervalData();
         List<RestTimeOverTimeLineDTO> GetRestTimeOverTimeData();
+        void ClearData();
     }
 }
